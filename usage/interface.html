@@ -1,0 +1,137 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The API interface &#8212; cmphy 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Core interface" href="../api/core.html" />
+    <link rel="prev" title="Installation" href="install.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-api-interface">
+<h1>The API interface<a class="headerlink" href="#the-api-interface" title="Permalink to this headline">¶</a></h1>
+<p>This page gives a good introduction in how to get started with the
+core functionality that is provided by cmphy.</p>
+<p>Before you begin, make sure that cmphy is <a class="reference internal" href="install.html"><span class="doc">installed</span></a>
+properly on your system.</p>
+<p>To use the Python interface to the COMSOL Multiphysics API you first
+have to create a <a class="reference internal" href="#connection-capabilities"><span class="std std-ref">connection</span></a> to
+COMSOL.</p>
+<div class="section" id="connection-capabilities">
+<span id="id1"></span><h2>Connection capabilities<a class="headerlink" href="#connection-capabilities" title="Permalink to this headline">¶</a></h2>
+<p>Starting and connecting to a COMSOL Multiphysics session is simple.
+The <a class="reference internal" href="../api/core.html#cmphy.session.Session" title="cmphy.session.Session"><code class="xref py py-class docutils literal"><span class="pre">Session</span></code></a> object enables you to
+start a new instance of a COMSOL Multiphysics server and to connect
+to that session:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ses</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ses</span><span class="o">.</span><span class="n">port</span>
+<span class="go">2036</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mu</span> <span class="o">=</span> <span class="n">ses</span><span class="o">.</span><span class="n">mu</span>  <span class="c1"># Get a handle to the ModelUtil object.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Model1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mu</span><span class="o">.</span><span class="n">tags</span><span class="p">()</span>
+<span class="go">(&#39;Model1&#39;,)</span>
+</pre></div>
+</div>
+<p>The above starts a new COMSOL server (listening to port 2036), connects
+the Python client to the running server and creates an empty model.</p>
+<p>The session object holds a handle to the ModelUtil COM-object which
+provides an interface to the COMSOL API.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mu</span>
+<span class="go">&lt;win32com.gen_py.ComsolCom 5.3.IModelUtil instance at 0x130251184&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The API interface</a><ul>
+<li><a class="reference internal" href="#connection-capabilities">Connection capabilities</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="../api/core.html" title="next chapter">Core interface</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/usage/interface.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Florian Boesl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/usage/interface.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

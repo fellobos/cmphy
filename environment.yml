@@ -1,6 +1,0 @@
-name: cmphy-dev
-dependencies:
-- python=3.6
-- psutil
-- pytest
-- pywin32

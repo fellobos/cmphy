@@ -1,0 +1,304 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Core interface &#8212; cmphy 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="The API interface" href="../usage/interface.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="core-interface">
+<h1>Core interface<a class="headerlink" href="#core-interface" title="Permalink to this headline">¶</a></h1>
+<p>This part of the documentation covers cmphy’s core interface to the
+COMSOL Multiphysics API.</p>
+<div class="section" id="module-cmphy.config">
+<span id="configuration"></span><h2>Configuration<a class="headerlink" href="#module-cmphy.config" title="Permalink to this headline">¶</a></h2>
+<p>This module holds the available configuration options for the package.</p>
+<dl class="data">
+<dt id="cmphy.config.DEBUG">
+<code class="descclassname">cmphy.config.</code><code class="descname">DEBUG</code><em class="property"> = False</em><a class="headerlink" href="#cmphy.config.DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wether to send log messages at the DEBUG level or higher to the
+console.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="cmphy.config.TIMEOUT">
+<code class="descclassname">cmphy.config.</code><code class="descname">TIMEOUT</code><em class="property"> = 60</em><a class="headerlink" href="#cmphy.config.TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Timeout in seconds after that a connection attempt to COMSOL is
+aborted.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="cmphy.config.VERSION">
+<code class="descclassname">cmphy.config.</code><code class="descname">VERSION</code><em class="property"> = '5.3'</em><a class="headerlink" href="#cmphy.config.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default COMSOL version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cmphy.config.configure_logging">
+<code class="descclassname">cmphy.config.</code><code class="descname">configure_logging</code><span class="sig-paren">(</span><em>config=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cmphy.config.configure_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure logging for cmphy using the given dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<em>dict</em><em>, </em><em>optional</em>) – The logging configuration to use. Use
+a default configuration if <cite>config</cite> is None.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cmphy.error">
+<span id="exceptions"></span><h2>Exceptions<a class="headerlink" href="#module-cmphy.error" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the COMSOL exception classes.</p>
+<dl class="exception">
+<dt id="cmphy.error.COMSOLError">
+<em class="property">exception </em><code class="descclassname">cmphy.error.</code><code class="descname">COMSOLError</code><a class="headerlink" href="#cmphy.error.COMSOLError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>Base class for all COMSOL exceptions.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="cmphy.error.VersionError">
+<em class="property">exception </em><code class="descclassname">cmphy.error.</code><code class="descname">VersionError</code><a class="headerlink" href="#cmphy.error.VersionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cmphy.error.COMSOLError" title="cmphy.error.COMSOLError"><code class="xref py py-class docutils literal"><span class="pre">cmphy.error.COMSOLError</span></code></a></p>
+<p>Raised when the requested COMSOL version was not found on the system.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="cmphy.error.ConnectionError">
+<em class="property">exception </em><code class="descclassname">cmphy.error.</code><code class="descname">ConnectionError</code><a class="headerlink" href="#cmphy.error.ConnectionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cmphy.error.COMSOLError" title="cmphy.error.COMSOLError"><code class="xref py py-class docutils literal"><span class="pre">cmphy.error.COMSOLError</span></code></a></p>
+<p>Raised when a connection attempt to COMSOL failed.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="cmphy.error.TimeoutError">
+<em class="property">exception </em><code class="descclassname">cmphy.error.</code><code class="descname">TimeoutError</code><a class="headerlink" href="#cmphy.error.TimeoutError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cmphy.error.ConnectionError" title="cmphy.error.ConnectionError"><code class="xref py py-class docutils literal"><span class="pre">cmphy.error.ConnectionError</span></code></a></p>
+<p>Raised when a connection attempt to COMSOL was aborted due to timeout.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="cmphy.error.AlreadyConnectedError">
+<em class="property">exception </em><code class="descclassname">cmphy.error.</code><code class="descname">AlreadyConnectedError</code><a class="headerlink" href="#cmphy.error.AlreadyConnectedError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cmphy.error.ConnectionError" title="cmphy.error.ConnectionError"><code class="xref py py-class docutils literal"><span class="pre">cmphy.error.ConnectionError</span></code></a></p>
+<p>Raised when the Python client is already connected to the server.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="cmphy.error.APIError">
+<em class="property">exception </em><code class="descclassname">cmphy.error.</code><code class="descname">APIError</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#cmphy.error.APIError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cmphy.error.COMSOLError" title="cmphy.error.COMSOLError"><code class="xref py py-class docutils literal"><span class="pre">cmphy.error.COMSOLError</span></code></a></p>
+<p>Raised when a COMSOL API function raises a com_error exception.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>com_error</strong> (<em>pywintypes.com_error</em>) – A COM exception raised by the
+ComsolCom interface.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cmphy.session">
+<span id="session"></span><h2>Session<a class="headerlink" href="#module-cmphy.session" title="Permalink to this headline">¶</a></h2>
+<p>This module provides connection capabilities to COMSOL.</p>
+<dl class="class">
+<dt id="cmphy.session.Session">
+<em class="property">class </em><code class="descclassname">cmphy.session.</code><code class="descname">Session</code><span class="sig-paren">(</span><em>version='5.3'</em>, <em>timeout=60</em>, <em>rebuild=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cmphy.session.Session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a COMSOL Multiphysics session in client/server mode.</p>
+<p>Start a COMSOL Multiphysics server and connect the Python client to
+the running server. The <cite>mu</cite> attribute provides a handle to the
+ModelUtil object.</p>
+<p>Exactly one single <cite>Session</cite> instance can be active at the same time.
+An <cite>AlreadyConnectedError</cite> is raised if multiple client connections
+are requested (e.g. a second <cite>Session</cite> is instantiated while the first
+one is still active).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>version</strong> (<em>str</em><em>, </em><em>optional</em>) – The COMSOL version to be started.</li>
+<li><strong>timeout</strong> (<em>int</em><em>, </em><em>optional</em>) – The time limit in seconds after which the
+connection attempt to COMSOL is aborted.</li>
+<li><strong>rebuild</strong> (<em>bool</em><em>, </em><em>optional</em>) – Wether to rebuild the Python source code
+for the ComsolCom interface.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">AlreadyConnectedError</span></code> – If the Python client is already connected
+to the COMSOL server.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Start a new COMSOL Multiphysics session and create an empty model
+on the server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ses</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ses</span><span class="o">.</span><span class="n">port</span>
+<span class="go">2036</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mu</span> <span class="o">=</span> <span class="n">ses</span><span class="o">.</span><span class="n">mu</span>  <span class="c1"># Get a handle to the ModelUtil object.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Model1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mu</span><span class="o">.</span><span class="n">tags</span><span class="p">()</span>
+<span class="go">(&#39;Model1&#39;,)</span>
+</pre></div>
+</div>
+<p>Open a COMSOL Multiphysics file in the desktop and connect the
+desktop to the running server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">ses</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="s2">&quot;tests\models\session-1.mph&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">getFilePath</span><span class="p">()</span>
+<span class="go">&#39;E:\Repos\cmphy\tests\models\session-1.mph&#39;</span>
+</pre></div>
+</div>
+<p>Shutdown the COMSOL session when done:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ses</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="cmphy.session.Session.launch">
+<code class="descname">launch</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cmphy.session.Session.launch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a COMSOL desktop that is connected to the running server.</p>
+<p>Open a COMSOL Multiphysics model in ‘interactive’ mode. This enables
+simultaneous access to the model from both clients (the desktop and
+the Python client).</p>
+<p>If another COMSOL desktop is already connected to the server,
+terminate that process, without saving, and remove the corresponding
+model from the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – Open the given MPH-file in the COMSOL
+desktop. Start an empty desktop if <cite>filepath</cite> is None.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The launched COMSOL Multiphysics model.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Model</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cmphy.session.Session.mu">
+<code class="descname">mu</code><a class="headerlink" href="#cmphy.session.Session.mu" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>IModelUtil</em> – A handle to the ModelUtil object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cmphy.session.Session.port">
+<code class="descname">port</code><a class="headerlink" href="#cmphy.session.Session.port" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> – The port number of the COMSOL server.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cmphy.session.Session.shutdown">
+<code class="descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cmphy.session.Session.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shutdown the COMSOL Multiphysics session.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Core interface</a><ul>
+<li><a class="reference internal" href="#module-cmphy.config">Configuration</a></li>
+<li><a class="reference internal" href="#module-cmphy.error">Exceptions</a></li>
+<li><a class="reference internal" href="#module-cmphy.session">Session</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../usage/interface.html" title="previous chapter">The API interface</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/core.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Florian Boesl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/api/core.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
